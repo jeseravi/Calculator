@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="header">Calculator</div>
+
+<div id="buttonContainer"></div>
+
+<script>
+
+    //create display space
+    let displayCreation = document.createElement("div");
+    displayCreation.setAttribute("id","display");
+    displayCreation.innerHTML="filler display";
+    document.getElementById("buttonContainer").appendChild(displayCreation);
+
+    //create buttons for numbers
+    let numberOfButtons = 10
+    for(i=0;i<numberOfButtons;i++){
+
+        let buttonCreation = document.createElement("button");
+        buttonCreation.setAttribute("class","button");
+        buttonCreation.innerHTML = i;
+        document.getElementById("buttonContainer").appendChild(buttonCreation); 
+
+    }
+
+    //create equals button
+    let equalsCreation = document.createElement("button");
+    equalsCreation.setAttribute("class","button");
+    equalsCreation.innerHTML = "=";
+    document.getElementById("buttonContainer").appendChild(equalsCreation);
+
+    //create operators
+    let plusCreation = document.createElement("button");
+    plusCreation.setAttribute("class","button");
+    plusCreation.innerHTML = "+";
+    document.getElementById("buttonContainer").appendChild(plusCreation);
+
+    let minusCreation = document.createElement("button");
+    minusCreation.setAttribute("class","button");
+    minusCreation.innerHTML = "-";
+    document.getElementById("buttonContainer").appendChild(minusCreation);
+
+    let timesCreation = document.createElement("button");
+    timesCreation.setAttribute("class","button");
+    timesCreation.innerHTML = "*";
+    document.getElementById("buttonContainer").appendChild(timesCreation);
+
+    let dividedByCreation = document.createElement("button");
+    dividedByCreation.setAttribute("class","button");
+    dividedByCreation.innerHTML = "/";
+    document.getElementById("buttonContainer").appendChild(dividedByCreation);
+
+
+
+    //addition function
+    function add(input1,input2){
+
+        return input1 + input2;
+
+    }
+
+    //subtraction function
+    function subtract(input1,input2){
+
+        return input1 - input2;
+
+    }
+
+    //multiplication function
+    function multiply(input1,input2){
+
+        return input1 * input2;
+        
+    }
+
+    //division function
+    function divide(input1,input2){
+
+    return input1 / input2;
+
+    }
+
+    //operate function
+    function operate(input1,operator,input2){
+        
+        if(operator == "plus"){
+            return add(input1,input2);
+        }
+
+        if(operator == "minus"){
+            return subtract(input1,input2);
+        }
+
+        if(operator == "times"){
+            return multiply(input1,input2);
+        }
+
+        if(operator == "dividedBy"){
+            return divide(input1,input2);
+        }
+
+    }
+
+
+
+</script>
+    
+</body>
+</html>

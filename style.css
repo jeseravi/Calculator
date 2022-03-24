@@ -1,0 +1,44 @@
+.body{
+
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+
+#header {
+
+    padding: 50px;
+    text-align: center;
+    font-size:40px;
+    background-color: #f6e0b5;
+    font-family: 'Courier New', monospace;
+
+}
+
+#display {
+    padding:50px;
+}
+
+#buttonContainer { 
+
+    display:flex;
+    flex-direction: column;
+    width: 500px;
+    height: 500px;
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    margin:0 auto;
+
+
+}
+
+.button{
+
+    height:100px;
+    width:100px;
+
+}
