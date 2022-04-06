@@ -11,54 +11,176 @@
 
 <div id="header">Calculator</div>
 
+<div id="displayContainer"></div>
+
 <div id="buttonContainer"></div>
+
 
 <script>
 
+    let numberOne=0
+    let numberTwo=0
+    let operator=0
+
+    //function to create display space
+    function displayCreate() {
+        let displayCreation = document.createElement("div");
+        displayCreation.setAttribute("id","display");
+        displayCreation.innerHTML="";
+        document.getElementById("displayContainer").appendChild(displayCreation);
+
+    }
+
     //create display space
-    let displayCreation = document.createElement("div");
-    displayCreation.setAttribute("id","display");
-    displayCreation.innerHTML="filler display";
-    document.getElementById("buttonContainer").appendChild(displayCreation);
+    displayCreate();
 
     //create buttons for numbers
     let numberOfButtons = 10
     for(i=0;i<numberOfButtons;i++){
 
         let buttonCreation = document.createElement("button");
-        buttonCreation.setAttribute("class","button");
+        buttonCreation.setAttribute("class","numberButton");
         buttonCreation.innerHTML = i;
         document.getElementById("buttonContainer").appendChild(buttonCreation); 
 
     }
 
+    //create event listeners for number buttons 
+    for(i=0;i<numberOfButtons;i++){
+
+        let addListener = document.getElementsByClassName("numberButton");
+
+        //append the number of the button to the display div
+        addListener[i].addEventListener("click",function(event){
+
+            
+            let buttonValue = event.target.innerHTML;
+            let appendedValue = document.createElement("div");
+            appendedValue.setAttribute("class","appendedNumber");
+            appendedValue.innerHTML = buttonValue;
+            document.getElementById("display").appendChild(appendedValue);
+            
+
+        })
+    }
+
+
     //create equals button
     let equalsCreation = document.createElement("button");
-    equalsCreation.setAttribute("class","button");
+    equalsCreation.setAttribute("class","equalsButton");
     equalsCreation.innerHTML = "=";
     document.getElementById("buttonContainer").appendChild(equalsCreation);
+    let equalsListener = document.getElementsByClassName("equalsButton");
+    equalsListener[0].addEventListener("click",function(event){
+        //store entered number into numberTwo
+        numberTwo = converter();
+        //remove display to clear it
+        let deleteAppended = document.getElementById('display');
+        deleteAppended.remove();
+        //recreate blank display
+        displayCreate();
+
+        //series of ifs to display answer. store result as numberOne
+        if(operator=="plus"){
+
+            numberOne = numberOne+numberTwo
+            let answerCreation = document.createElement("div");
+            answerCreation.setAttribute("class","appendedNumber");
+            answerCreation.innerHTML = numberOne;
+            document.getElementById("display").appendChild(answerCreation);
+
+        }
+
+        if(operator=="minus"){
+            
+            numberOne = numberOne - numberTwo
+            let answerCreation = document.createElement("div");
+            answerCreation.setAttribute("class","appendedNumber");
+            answerCreation.innerHTML = numberOne;
+            document.getElementById("display").appendChild(answerCreation);
+
+        }
+
+
+
+
+
+    })
+
+
+
+
+
+
 
     //create operators
+
+    //plus button
     let plusCreation = document.createElement("button");
-    plusCreation.setAttribute("class","button");
+    plusCreation.setAttribute("class","plusButton");
     plusCreation.innerHTML = "+";
     document.getElementById("buttonContainer").appendChild(plusCreation);
+    let plusListener = document.getElementsByClassName("plusButton");
+    plusListener[0].addEventListener("click",function(event){   
+        //Store entered number into numberOne  
+        numberOne = converter();
+        //set operator to "plus"
+        operator="plus";
+        //remove display to clear it
+        let deleteAppended = document.getElementById('display');
+        deleteAppended.remove();
+        //recreate blank display
+        displayCreate();
+
+    })
 
     let minusCreation = document.createElement("button");
-    minusCreation.setAttribute("class","button");
+    minusCreation.setAttribute("class","minusButton");
     minusCreation.innerHTML = "-";
     document.getElementById("buttonContainer").appendChild(minusCreation);
+    let minusListener = document.getElementsByClassName("minusButton");
+    minusListener[0].addEventListener("click",function(event){   
+        //Store entered number into numberOne  
+        numberOne = converter();
+        //set operator to "minus"
+        operator="minus";
+        //remove display to clear it
+        let deleteAppended = document.getElementById('display');
+        deleteAppended.remove();
+        //recreate blank display
+        displayCreate();
+
+    })
 
     let timesCreation = document.createElement("button");
-    timesCreation.setAttribute("class","button");
+    timesCreation.setAttribute("class","timesButton");
     timesCreation.innerHTML = "*";
     document.getElementById("buttonContainer").appendChild(timesCreation);
 
     let dividedByCreation = document.createElement("button");
-    dividedByCreation.setAttribute("class","button");
+    dividedByCreation.setAttribute("class","dividedByButton");
     dividedByCreation.innerHTML = "/";
     document.getElementById("buttonContainer").appendChild(dividedByCreation);
 
+    //create clear button
+    let clearCreation = document.createElement("button");
+    clearCreation.setAttribute("class","clearButton");
+    clearCreation.innerHTML = "Clear";
+    document.getElementById("buttonContainer").appendChild(clearCreation);
+    let clearListener = document.getElementsByClassName("clearButton");
+    clearListener[0].addEventListener("click",function(event){     
+    
+        //remove display to clear it
+        let deleteAppended = document.getElementById('display');
+        deleteAppended.remove();
+        //recreate blank display
+        displayCreate();
+        //set numberOne and numberTwo and operator to zero
+        numberOne=0;
+        numberTwo=0;
+        operator=0;
+    
+    })
 
 
     //addition function
@@ -89,28 +211,25 @@
 
     }
 
-    //operate function
-    function operate(input1,operator,input2){
+
+    //convert all the numbers in the divs in the display into something useable
+    //stores everything currently in display to the text variable
+    
+    function converter(){
+    
+        let text = "";
+        let numberConverter = document.getElementsByClassName("appendedNumber");
+    
+        for(i=0;i<numberConverter.length;i++){
+
+            text += numberConverter[i].innerHTML;
+            
+        }
         
-        if(operator == "plus"){
-            return add(input1,input2);
-        }
-
-        if(operator == "minus"){
-            return subtract(input1,input2);
-        }
-
-        if(operator == "times"){
-            return multiply(input1,input2);
-        }
-
-        if(operator == "dividedBy"){
-            return divide(input1,input2);
-        }
-
+        //converts the string into a number
+        return parseInt(text);
+        
     }
-
-
 
 </script>
     

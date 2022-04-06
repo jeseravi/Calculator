@@ -3,6 +3,7 @@
     display:flex;
     align-items: center;
     justify-content: center;
+    text-align:center;
 
 
 }
@@ -18,9 +19,6 @@
 
 }
 
-#display {
-    padding:50px;
-}
 
 #buttonContainer { 
 
@@ -28,17 +26,66 @@
     flex-direction: column;
     width: 500px;
     height: 500px;
-    border: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
     justify-content: center;
     align-items: center;
     margin:0 auto;
+    flex-wrap:wrap;
+    
 
 
 }
 
-.button{
+.numberButton{
 
     height:100px;
     width:100px;
 
+}
+
+#displayContainer{
+    border: 1px solid black;
+    display:flex;
+    flex-direction: column;
+    width: 500px;
+    height: 100px;
+    margin:0 auto;
+    align-items: center;
+    text-align:center;
+    justify-content: center;
+
+}
+
+
+#display {
+
+    
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    align-items: center;
+    text-align:center;
+    font-family: 'Courier New', monospace;
+    font-size: 35px;
+    
+
+
+}
+
+.plusButton{
+
+    font-size:25px;
+    width:100px;
+    height:100px;
+    
+}
+
+
+.minusButton{
+
+    font-size:25px;
+    width:100px;
+    height:100px;
 }
